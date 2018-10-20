@@ -1,7 +1,7 @@
-const todos = require('./todo');
-const todoItems = require('./todoitem');
+import todos from './todo';
+import todoItems from './todoItem';
 
-module.exports = {
+export default {
   todos,
   todoItems,
 };

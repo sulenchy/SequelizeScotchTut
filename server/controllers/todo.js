@@ -1,16 +1,20 @@
-const Todo = require('../models').Todo;
-const TodoItem = require('../models').TodoItem;
+import models from '../models';
 
-module.exports = {
-  create(req, res) {
+const Todo = models.Todo;
+const TodoItem = models.TodoItem;
+
+export default class TodoController {
+
+  static create(req, res) {
     return Todo
       .create({
         title: req.body.title,
       })
       .then(todo => res.status(201).send(todo))
       .catch(error => res.status(400).send(error));
-  },
-  list(req, res) {
+  }
+
+  static list(req, res) {
     return Todo
       .findAll({
         include: [{
@@ -20,8 +24,9 @@ module.exports = {
       })
       .then(todos => res.status(200).send(todos))
       .catch(error => res.status(400).send(error));
-  },
-  retrieve(req, res) {
+  }
+
+  static retrieve(req, res) {
     return Todo
       .findById(req.params.todoId, {
         include: [{
@@ -38,8 +43,9 @@ module.exports = {
         return res.status(200).send(todo);
       })
       .catch(error => res.status(400).send(error));
-  },
-  update(req, res) {
+  }
+
+  static update(req, res) {
     return Todo
       .findById(req.params.todoId, {
         include: [{
@@ -61,8 +67,9 @@ module.exports = {
           .catch((error) => res.status(400).send(error));
       })
       .catch((error) => res.status(400).send(error));
-  },
-  destroy(req, res) {
+  }
+
+  static destroy(req, res) {
     return Todo
       .findById(req.params.todoId)
       .then(todo => {
@@ -77,5 +84,6 @@ module.exports = {
           .catch(error => res.status(400).send(error));
       })
       .catch(error => res.status(400).send(error));
-  },
-};
+  }
+
+}

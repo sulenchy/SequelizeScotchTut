@@ -1,7 +1,9 @@
-const TodoItem = require('../models').TodoItem;
+import models from '../models';
 
-module.exports = {
-  create(req, res) {
+const TodoItem = models.TodoItem;
+
+export default class TodoItemController {
+  static create(req, res) {
     return TodoItem
       .create({
         content: req.body.content,
@@ -9,8 +11,9 @@ module.exports = {
       })
       .then(todoItem => res.status(201).send(todoItem))
       .catch(error => res.status(400).send(error.message));
-  },
-  update(req, res) {
+  }
+
+  static update(req, res) {
     return TodoItem
       .find({
           where: {
@@ -31,9 +34,9 @@ module.exports = {
           .catch(error => res.status(400).send(error));
       })
       .catch(error => res.status(400).send(error));
-  },
+  }
   
-  destroy(req, res) {
+  static destroy(req, res) {
     return TodoItem
       .find({
           where: {
@@ -54,5 +57,5 @@ module.exports = {
           .catch(error => res.status(400).send(error));
       })
       .catch(error => res.status(400).send(error));
-  },
+  }
 };
