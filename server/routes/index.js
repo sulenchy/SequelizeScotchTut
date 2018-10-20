@@ -1,7 +1,7 @@
-const todosController = require('../controllers').todos;
-const todoItemsController = require('../controllers').todoItems;
+import todosController from '../controllers/todo';
+import todoItemsController from '../controllers/todoItem';
 
-module.exports = (app) => {
+const routes = (app) => {
   app.get('/api', (req, res) => res.status(200).send({
     message: 'Welcome to the Todos API!',
   }));
@@ -22,3 +22,6 @@ module.exports = (app) => {
       message: 'Method Not Allowed',
   }));
 };
+
+
+export default routes;

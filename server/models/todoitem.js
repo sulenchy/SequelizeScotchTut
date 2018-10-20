@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+const todoItemModel = (sequelize, DataTypes) => {
   const TodoItem = sequelize.define('TodoItem', {
     content: {
       type: DataTypes.STRING,
@@ -19,3 +19,5 @@ module.exports = (sequelize, DataTypes) => {
 
   return TodoItem;
 };
+
+export default todoItemModel;
